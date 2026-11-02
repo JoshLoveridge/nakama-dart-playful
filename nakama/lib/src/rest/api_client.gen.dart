@@ -1850,19 +1850,19 @@ abstract class ApiClient {
   /// A healthcheck which load balancers can use to check the service.
   @GET('/healthcheck')
   Future<void> healthcheck({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
   });
 
   /// Fetch the current user's account.
   @GET('/v2/account')
   Future<ApiAccount> getAccount({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
   });
 
   /// Update fields in the current user's account.
   @PUT('/v2/account')
   Future<void> updateAccount({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiUpdateAccountRequest body,
   });
 
@@ -1871,7 +1871,7 @@ abstract class ApiClient {
   Future<ApiSession> authenticateApple({
     String? basicAuthUsername,
     String? basicAuthPassword,
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountApple body,
     @Query('create') bool? create,
     @Query('username') String? username,
@@ -1882,7 +1882,7 @@ abstract class ApiClient {
   Future<ApiSession> authenticateCustom({
     String? basicAuthUsername,
     String? basicAuthPassword,
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountCustom body,
     @Query('create') bool? create,
     @Query('username') String? username,
@@ -1893,7 +1893,7 @@ abstract class ApiClient {
   Future<ApiSession> authenticateDevice({
     String? basicAuthUsername,
     String? basicAuthPassword,
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountDevice body,
     @Query('create') bool? create,
     @Query('username') String? username,
@@ -1904,7 +1904,7 @@ abstract class ApiClient {
   Future<ApiSession> authenticateEmail({
     String? basicAuthUsername,
     String? basicAuthPassword,
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountEmail body,
     @Query('create') bool? create,
     @Query('username') String? username,
@@ -1915,7 +1915,7 @@ abstract class ApiClient {
   Future<ApiSession> authenticateFacebook({
     String? basicAuthUsername,
     String? basicAuthPassword,
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountFacebook body,
     @Query('create') bool? create,
     @Query('username') String? username,
@@ -1927,7 +1927,7 @@ abstract class ApiClient {
   Future<ApiSession> authenticateFacebookInstantGame({
     String? basicAuthUsername,
     String? basicAuthPassword,
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountFacebookInstantGame body,
     @Query('create') bool? create,
     @Query('username') String? username,
@@ -1938,7 +1938,7 @@ abstract class ApiClient {
   Future<ApiSession> authenticateGameCenter({
     String? basicAuthUsername,
     String? basicAuthPassword,
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountGameCenter body,
     @Query('create') bool? create,
     @Query('username') String? username,
@@ -1949,7 +1949,7 @@ abstract class ApiClient {
   Future<ApiSession> authenticateGoogle({
     String? basicAuthUsername,
     String? basicAuthPassword,
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountGoogle body,
     @Query('create') bool? create,
     @Query('username') String? username,
@@ -1960,7 +1960,7 @@ abstract class ApiClient {
   Future<ApiSession> authenticateSteam({
     String? basicAuthUsername,
     String? basicAuthPassword,
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountSteam body,
     @Query('create') bool? create,
     @Query('username') String? username,
@@ -1970,35 +1970,35 @@ abstract class ApiClient {
   /// Add an Apple ID to the social profiles on the current user's account.
   @POST('/v2/account/link/apple')
   Future<void> linkApple({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountApple body,
   });
 
   /// Add a custom ID to the social profiles on the current user's account.
   @POST('/v2/account/link/custom')
   Future<void> linkCustom({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountCustom body,
   });
 
   /// Add a device ID to the social profiles on the current user's account.
   @POST('/v2/account/link/device')
   Future<void> linkDevice({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountDevice body,
   });
 
   /// Add an email+password to the social profiles on the current user's account.
   @POST('/v2/account/link/email')
   Future<void> linkEmail({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountEmail body,
   });
 
   /// Add Facebook to the social profiles on the current user's account.
   @POST('/v2/account/link/facebook')
   Future<void> linkFacebook({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountFacebook body,
     @Query('sync') bool? sync,
   });
@@ -2006,28 +2006,28 @@ abstract class ApiClient {
   /// Add Facebook Instant Game to the social profiles on the current user's account.
   @POST('/v2/account/link/facebookinstantgame')
   Future<void> linkFacebookInstantGame({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountFacebookInstantGame body,
   });
 
   /// Add Apple's GameCenter to the social profiles on the current user's account.
   @POST('/v2/account/link/gamecenter')
   Future<void> linkGameCenter({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountGameCenter body,
   });
 
   /// Add Google to the social profiles on the current user's account.
   @POST('/v2/account/link/google')
   Future<void> linkGoogle({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountGoogle body,
   });
 
   /// Add Steam to the social profiles on the current user's account.
   @POST('/v2/account/link/steam')
   Future<void> linkSteam({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiLinkSteamRequest body,
   });
 
@@ -2036,77 +2036,77 @@ abstract class ApiClient {
   Future<ApiSession> sessionRefresh({
     String? basicAuthUsername,
     String? basicAuthPassword,
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiSessionRefreshRequest body,
   });
 
   /// Remove the Apple ID from the social profiles on the current user's account.
   @POST('/v2/account/unlink/apple')
   Future<void> unlinkApple({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountApple body,
   });
 
   /// Remove the custom ID from the social profiles on the current user's account.
   @POST('/v2/account/unlink/custom')
   Future<void> unlinkCustom({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountCustom body,
   });
 
   /// Remove the device ID from the social profiles on the current user's account.
   @POST('/v2/account/unlink/device')
   Future<void> unlinkDevice({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountDevice body,
   });
 
   /// Remove the email+password from the social profiles on the current user's account.
   @POST('/v2/account/unlink/email')
   Future<void> unlinkEmail({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountEmail body,
   });
 
   /// Remove Facebook from the social profiles on the current user's account.
   @POST('/v2/account/unlink/facebook')
   Future<void> unlinkFacebook({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountFacebook body,
   });
 
   /// Remove Facebook Instant Game profile from the social profiles on the current user's account.
   @POST('/v2/account/unlink/facebookinstantgame')
   Future<void> unlinkFacebookInstantGame({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountFacebookInstantGame body,
   });
 
   /// Remove Apple's GameCenter from the social profiles on the current user's account.
   @POST('/v2/account/unlink/gamecenter')
   Future<void> unlinkGameCenter({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountGameCenter body,
   });
 
   /// Remove Google from the social profiles on the current user's account.
   @POST('/v2/account/unlink/google')
   Future<void> unlinkGoogle({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountGoogle body,
   });
 
   /// Remove Steam from the social profiles on the current user's account.
   @POST('/v2/account/unlink/steam')
   Future<void> unlinkSteam({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountSteam body,
   });
 
   /// List a channel's message history.
   @GET('/v2/channel/{channelId}')
   Future<ApiChannelMessageList> listChannelMessages({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('channelId') required String channelId,
     @Query('limit') int? limit,
     @Query('forward') bool? forward,
@@ -2116,14 +2116,14 @@ abstract class ApiClient {
   /// Submit an event for processing in the server's registered runtime custom events handler.
   @POST('/v2/event')
   Future<void> event({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiEvent body,
   });
 
   /// Delete one or more users by ID or username.
   @DELETE('/v2/friend')
   Future<void> deleteFriends({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Query('ids') required List<String> ids,
     @Query('usernames') required List<String> usernames,
   });
@@ -2131,7 +2131,7 @@ abstract class ApiClient {
   /// List all friends for the current user.
   @GET('/v2/friend')
   Future<ApiFriendList> listFriends({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Query('limit') int? limit,
     @Query('state') int? state,
     @Query('cursor') String? cursor,
@@ -2140,7 +2140,7 @@ abstract class ApiClient {
   /// Add friends by ID or username to a user's account.
   @POST('/v2/friend')
   Future<void> addFriends({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Query('ids') required List<String> ids,
     @Query('usernames') required List<String> usernames,
   });
@@ -2148,7 +2148,7 @@ abstract class ApiClient {
   /// Block one or more users by ID or username.
   @POST('/v2/friend/block')
   Future<void> blockFriends({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Query('ids') required List<String> ids,
     @Query('usernames') required List<String> usernames,
   });
@@ -2156,7 +2156,7 @@ abstract class ApiClient {
   /// Import Facebook friends and add them to a user's account.
   @POST('/v2/friend/facebook')
   Future<void> importFacebookFriends({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountFacebook body,
     @Query('reset') bool? reset,
   });
@@ -2164,7 +2164,7 @@ abstract class ApiClient {
   /// Import Steam friends and add them to a user's account.
   @POST('/v2/friend/steam')
   Future<void> importSteamFriends({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiAccountSteam body,
     @Query('reset') bool? reset,
   });
@@ -2172,7 +2172,7 @@ abstract class ApiClient {
   /// List groups based on given filters.
   @GET('/v2/group')
   Future<ApiGroupList> listGroups({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Query('name') String? name,
     @Query('cursor') String? cursor,
     @Query('limit') int? limit,
@@ -2184,21 +2184,21 @@ abstract class ApiClient {
   /// Create a new group with the current user as the owner.
   @POST('/v2/group')
   Future<ApiGroup> createGroup({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiCreateGroupRequest body,
   });
 
   /// Delete a group by ID.
   @DELETE('/v2/group/{groupId}')
   Future<void> deleteGroup({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('groupId') required String groupId,
   });
 
   /// Update fields in a given group.
   @PUT('/v2/group/{groupId}')
   Future<void> updateGroup({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('groupId') required String groupId,
     @Body() required ApiUpdateGroupRequest body,
   });
@@ -2206,7 +2206,7 @@ abstract class ApiClient {
   /// Add users to a group.
   @POST('/v2/group/{groupId}/add')
   Future<void> addGroupUsers({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('groupId') required String groupId,
     @Query('userIds') required List<String> userIds,
   });
@@ -2214,7 +2214,7 @@ abstract class ApiClient {
   /// Ban a set of users from a group.
   @POST('/v2/group/{groupId}/ban')
   Future<void> banGroupUsers({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('groupId') required String groupId,
     @Query('userIds') required List<String> userIds,
   });
@@ -2222,7 +2222,7 @@ abstract class ApiClient {
   /// Demote a set of users in a group to the next role down.
   @POST('/v2/group/{groupId}/demote')
   Future<void> demoteGroupUsers({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('groupId') required String groupId,
     @Query('userIds') required List<String> userIds,
   });
@@ -2230,14 +2230,14 @@ abstract class ApiClient {
   /// Immediately join an open group, or request to join a closed one.
   @POST('/v2/group/{groupId}/join')
   Future<void> joinGroup({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('groupId') required String groupId,
   });
 
   /// Kick a set of users from a group.
   @POST('/v2/group/{groupId}/kick')
   Future<void> kickGroupUsers({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('groupId') required String groupId,
     @Query('userIds') required List<String> userIds,
   });
@@ -2245,14 +2245,14 @@ abstract class ApiClient {
   /// Leave a group the user is a member of.
   @POST('/v2/group/{groupId}/leave')
   Future<void> leaveGroup({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('groupId') required String groupId,
   });
 
   /// Promote a set of users in a group to the next role up.
   @POST('/v2/group/{groupId}/promote')
   Future<void> promoteGroupUsers({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('groupId') required String groupId,
     @Query('userIds') required List<String> userIds,
   });
@@ -2260,7 +2260,7 @@ abstract class ApiClient {
   /// List all users that are part of a group.
   @GET('/v2/group/{groupId}/user')
   Future<ApiGroupUserList> listGroupUsers({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('groupId') required String groupId,
     @Query('limit') int? limit,
     @Query('state') int? state,
@@ -2270,63 +2270,63 @@ abstract class ApiClient {
   /// Validate Apple IAP Receipt
   @POST('/v2/iap/purchase/apple')
   Future<ApiValidatePurchaseResponse> validatePurchaseApple({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiValidatePurchaseAppleRequest body,
   });
 
   /// Validate Google IAP Receipt
   @POST('/v2/iap/purchase/google')
   Future<ApiValidatePurchaseResponse> validatePurchaseGoogle({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiValidatePurchaseGoogleRequest body,
   });
 
   /// Validate Huawei IAP Receipt
   @POST('/v2/iap/purchase/huawei')
   Future<ApiValidatePurchaseResponse> validatePurchaseHuawei({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiValidatePurchaseHuaweiRequest body,
   });
 
   /// List user's subscriptions.
   @POST('/v2/iap/subscription')
   Future<ApiSubscriptionList> listSubscriptions({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiListSubscriptionsRequest body,
   });
 
   /// Validate Apple Subscription Receipt
   @POST('/v2/iap/subscription/apple')
   Future<ApiValidateSubscriptionResponse> validateSubscriptionApple({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiValidateSubscriptionAppleRequest body,
   });
 
   /// Validate Google Subscription Receipt
   @POST('/v2/iap/subscription/google')
   Future<ApiValidateSubscriptionResponse> validateSubscriptionGoogle({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiValidateSubscriptionGoogleRequest body,
   });
 
   /// Get subscription by product id.
   @GET('/v2/iap/subscription/{productId}')
   Future<ApiValidatedSubscription> getSubscription({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('productId') required String productId,
   });
 
   /// Delete a leaderboard record.
   @DELETE('/v2/leaderboard/{leaderboardId}')
   Future<void> deleteLeaderboardRecord({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('leaderboardId') required String leaderboardId,
   });
 
   /// List leaderboard records.
   @GET('/v2/leaderboard/{leaderboardId}')
   Future<ApiLeaderboardRecordList> listLeaderboardRecords({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('leaderboardId') required String leaderboardId,
     @Query('ownerIds') required List<String> ownerIds,
     @Query('limit') int? limit,
@@ -2337,7 +2337,7 @@ abstract class ApiClient {
   /// Write a record to a leaderboard.
   @POST('/v2/leaderboard/{leaderboardId}')
   Future<ApiLeaderboardRecord> writeLeaderboardRecord({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('leaderboardId') required String leaderboardId,
     @Body() required WriteLeaderboardRecordRequestLeaderboardRecordWrite body,
   });
@@ -2345,7 +2345,7 @@ abstract class ApiClient {
   /// List leaderboard records around the target ownerId.
   @GET('/v2/leaderboard/{leaderboardId}/owner/{ownerId}')
   Future<ApiLeaderboardRecordList> listLeaderboardRecordsAroundOwner({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('leaderboardId') required String leaderboardId,
     @Path('ownerId') required String ownerId,
     @Query('limit') int? limit,
@@ -2355,7 +2355,7 @@ abstract class ApiClient {
   /// Fetch list of running matches.
   @GET('/v2/match')
   Future<ApiMatchList> listMatches({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Query('limit') int? limit,
     @Query('authoritative') bool? authoritative,
     @Query('label') String? label,
@@ -2367,14 +2367,14 @@ abstract class ApiClient {
   /// Delete one or more notifications for the current user.
   @DELETE('/v2/notification')
   Future<void> deleteNotifications({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Query('ids') required List<String> ids,
   });
 
   /// Fetch list of notifications.
   @GET('/v2/notification')
   Future<ApiNotificationList> listNotifications({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Query('limit') int? limit,
     @Query('cacheableCursor') String? cacheableCursor,
   });
@@ -2384,7 +2384,7 @@ abstract class ApiClient {
   Future<ApiRpc> rpcFunc2({
     String? basicAuthUsername,
     String? basicAuthPassword,
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('id') required String id,
     @Query('payload') String? payload,
     @Query('httpKey') String? httpKey,
@@ -2395,7 +2395,7 @@ abstract class ApiClient {
   Future<ApiRpc> rpcFunc({
     String? basicAuthUsername,
     String? basicAuthPassword,
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('id') required String id,
     @Body() required String body,
     @Query('httpKey') String? httpKey,
@@ -2404,35 +2404,35 @@ abstract class ApiClient {
   /// Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
   @POST('/v2/session/logout')
   Future<void> sessionLogout({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiSessionLogoutRequest body,
   });
 
   /// Get storage objects.
   @POST('/v2/storage')
   Future<ApiStorageObjects> readStorageObjects({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiReadStorageObjectsRequest body,
   });
 
   /// Write objects into the storage engine.
   @PUT('/v2/storage')
   Future<ApiStorageObjectAcks> writeStorageObjects({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiWriteStorageObjectsRequest body,
   });
 
   /// Delete one or more objects by ID or username.
   @PUT('/v2/storage/delete')
   Future<void> deleteStorageObjects({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Body() required ApiDeleteStorageObjectsRequest body,
   });
 
   /// List publicly readable storage objects in a given collection.
   @GET('/v2/storage/{collection}')
   Future<ApiStorageObjectList> listStorageObjects({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('collection') required String collection,
     @Query('userId') String? userId,
     @Query('limit') int? limit,
@@ -2442,7 +2442,7 @@ abstract class ApiClient {
   /// List publicly readable storage objects in a given collection.
   @GET('/v2/storage/{collection}/{userId}')
   Future<ApiStorageObjectList> listStorageObjects2({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('collection') required String collection,
     @Path('userId') required String userId,
     @Query('limit') int? limit,
@@ -2452,7 +2452,7 @@ abstract class ApiClient {
   /// List current or upcoming tournaments.
   @GET('/v2/tournament')
   Future<ApiTournamentList> listTournaments({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Query('categoryStart') int? categoryStart,
     @Query('categoryEnd') int? categoryEnd,
     @Query('startTime') int? startTime,
@@ -2464,7 +2464,7 @@ abstract class ApiClient {
   /// List tournament records.
   @GET('/v2/tournament/{tournamentId}')
   Future<ApiTournamentRecordList> listTournamentRecords({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('tournamentId') required String tournamentId,
     @Query('ownerIds') required List<String> ownerIds,
     @Query('limit') int? limit,
@@ -2475,7 +2475,7 @@ abstract class ApiClient {
   /// Write a record to a tournament.
   @POST('/v2/tournament/{tournamentId}')
   Future<ApiLeaderboardRecord> writeTournamentRecord2({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('tournamentId') required String tournamentId,
     @Body() required WriteTournamentRecordRequestTournamentRecordWrite body,
   });
@@ -2483,7 +2483,7 @@ abstract class ApiClient {
   /// Write a record to a tournament.
   @PUT('/v2/tournament/{tournamentId}')
   Future<ApiLeaderboardRecord> writeTournamentRecord({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('tournamentId') required String tournamentId,
     @Body() required WriteTournamentRecordRequestTournamentRecordWrite body,
   });
@@ -2491,14 +2491,14 @@ abstract class ApiClient {
   /// Attempt to join an open and running tournament.
   @POST('/v2/tournament/{tournamentId}/join')
   Future<void> joinTournament({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('tournamentId') required String tournamentId,
   });
 
   /// List tournament records for a given owner.
   @GET('/v2/tournament/{tournamentId}/owner/{ownerId}')
   Future<ApiTournamentRecordList> listTournamentRecordsAroundOwner({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('tournamentId') required String tournamentId,
     @Path('ownerId') required String ownerId,
     @Query('limit') int? limit,
@@ -2508,7 +2508,7 @@ abstract class ApiClient {
   /// Fetch zero or more users by ID and/or username.
   @GET('/v2/user')
   Future<ApiUsers> getUsers({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Query('ids') required List<String> ids,
     @Query('usernames') required List<String> usernames,
     @Query('facebookIds') required List<String> facebookIds,
@@ -2517,7 +2517,7 @@ abstract class ApiClient {
   /// List groups the current user belongs to.
   @GET('/v2/user/{userId}/group')
   Future<ApiUserGroupList> listUserGroups({
-    String? bearerToken,
+    @Header('Authorization') String? bearerToken,
     @Path('userId') required String userId,
     @Query('limit') int? limit,
     @Query('state') int? state,

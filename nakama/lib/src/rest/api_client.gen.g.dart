@@ -1063,7 +1063,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'GET',
@@ -1088,7 +1089,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiAccount>(Options(
       method: 'GET',
@@ -1118,7 +1120,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1154,7 +1157,8 @@ class _ApiClient implements ApiClient {
       r'username': username,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
@@ -1192,7 +1196,8 @@ class _ApiClient implements ApiClient {
       r'username': username,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
@@ -1230,7 +1235,8 @@ class _ApiClient implements ApiClient {
       r'username': username,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
@@ -1268,7 +1274,8 @@ class _ApiClient implements ApiClient {
       r'username': username,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
@@ -1308,7 +1315,8 @@ class _ApiClient implements ApiClient {
       r'sync': sync,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
@@ -1346,7 +1354,8 @@ class _ApiClient implements ApiClient {
       r'username': username,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
@@ -1384,7 +1393,8 @@ class _ApiClient implements ApiClient {
       r'username': username,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
@@ -1422,7 +1432,8 @@ class _ApiClient implements ApiClient {
       r'username': username,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
@@ -1462,7 +1473,8 @@ class _ApiClient implements ApiClient {
       r'sync': sync,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
@@ -1493,7 +1505,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1522,7 +1535,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1551,7 +1565,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1580,7 +1595,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1610,7 +1626,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'sync': sync};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1639,7 +1656,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1668,7 +1686,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1697,7 +1716,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1726,7 +1746,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1757,7 +1778,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
@@ -1788,7 +1810,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1817,7 +1840,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1846,7 +1870,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1875,7 +1900,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1904,7 +1930,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1933,7 +1960,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1962,7 +1990,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -1991,7 +2020,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -2020,7 +2050,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -2056,7 +2087,8 @@ class _ApiClient implements ApiClient {
       r'cursor': cursor,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiChannelMessageList>(Options(
       method: 'GET',
@@ -2086,7 +2118,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -2119,7 +2152,8 @@ class _ApiClient implements ApiClient {
       r'usernames': usernames,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'DELETE',
@@ -2153,7 +2187,8 @@ class _ApiClient implements ApiClient {
       r'cursor': cursor,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiFriendList>(Options(
       method: 'GET',
@@ -2187,7 +2222,8 @@ class _ApiClient implements ApiClient {
       r'usernames': usernames,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
@@ -2219,7 +2255,8 @@ class _ApiClient implements ApiClient {
       r'usernames': usernames,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
@@ -2248,7 +2285,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'reset': reset};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -2278,7 +2316,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'reset': reset};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -2319,7 +2358,8 @@ class _ApiClient implements ApiClient {
       r'open': open,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiGroupList>(Options(
       method: 'GET',
@@ -2349,7 +2389,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiGroup>(Options(
@@ -2380,7 +2421,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'DELETE',
@@ -2409,7 +2451,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -2439,7 +2482,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'userIds': userIds};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
@@ -2468,7 +2512,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'userIds': userIds};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
@@ -2497,7 +2542,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'userIds': userIds};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
@@ -2525,7 +2571,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
@@ -2554,7 +2601,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'userIds': userIds};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
@@ -2582,7 +2630,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
@@ -2611,7 +2660,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'userIds': userIds};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
@@ -2646,7 +2696,8 @@ class _ApiClient implements ApiClient {
       r'cursor': cursor,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiGroupUserList>(Options(
       method: 'GET',
@@ -2676,7 +2727,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiValidatePurchaseResponse>(Options(
@@ -2707,7 +2759,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiValidatePurchaseResponse>(Options(
@@ -2738,7 +2791,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiValidatePurchaseResponse>(Options(
@@ -2769,7 +2823,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSubscriptionList>(Options(
@@ -2800,7 +2855,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiValidateSubscriptionResponse>(Options(
@@ -2831,7 +2887,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiValidateSubscriptionResponse>(Options(
@@ -2862,7 +2919,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiValidatedSubscription>(Options(
       method: 'GET',
@@ -2892,7 +2950,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'DELETE',
@@ -2929,7 +2988,8 @@ class _ApiClient implements ApiClient {
       r'expiry': expiry,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiLeaderboardRecordList>(Options(
       method: 'GET',
@@ -2960,7 +3020,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiLeaderboardRecord>(Options(
@@ -2997,7 +3058,8 @@ class _ApiClient implements ApiClient {
       r'expiry': expiry,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiLeaderboardRecordList>(Options(
       method: 'GET',
@@ -3039,7 +3101,8 @@ class _ApiClient implements ApiClient {
       r'query': query,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiMatchList>(Options(
       method: 'GET',
@@ -3069,7 +3132,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'ids': ids};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'DELETE',
@@ -3101,7 +3165,8 @@ class _ApiClient implements ApiClient {
       r'cacheableCursor': cacheableCursor,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiNotificationList>(Options(
       method: 'GET',
@@ -3138,7 +3203,8 @@ class _ApiClient implements ApiClient {
       r'httpKey': httpKey,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiRpc>(Options(
       method: 'GET',
@@ -3172,7 +3238,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'httpKey': httpKey};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = body;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiRpc>(Options(
       method: 'POST',
@@ -3202,7 +3269,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -3231,7 +3299,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiStorageObjects>(Options(
@@ -3262,7 +3331,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiStorageObjectAcks>(Options(
@@ -3293,7 +3363,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     await _dio.fetch<void>(_setStreamType<void>(Options(
@@ -3329,7 +3400,8 @@ class _ApiClient implements ApiClient {
       r'cursor': cursor,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiStorageObjectList>(Options(
       method: 'GET',
@@ -3365,7 +3437,8 @@ class _ApiClient implements ApiClient {
       r'cursor': cursor,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiStorageObjectList>(Options(
       method: 'GET',
@@ -3407,7 +3480,8 @@ class _ApiClient implements ApiClient {
       r'cursor': cursor,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiTournamentList>(Options(
       method: 'GET',
@@ -3446,7 +3520,8 @@ class _ApiClient implements ApiClient {
       r'expiry': expiry,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiTournamentRecordList>(Options(
       method: 'GET',
@@ -3477,7 +3552,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiLeaderboardRecord>(Options(
@@ -3509,7 +3585,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiLeaderboardRecord>(Options(
@@ -3540,7 +3617,8 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
@@ -3574,7 +3652,8 @@ class _ApiClient implements ApiClient {
       r'expiry': expiry,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiTournamentRecordList>(Options(
       method: 'GET',
@@ -3610,7 +3689,8 @@ class _ApiClient implements ApiClient {
       r'facebookIds': facebookIds,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiUsers>(Options(
       method: 'GET',
@@ -3647,7 +3727,8 @@ class _ApiClient implements ApiClient {
       r'cursor': cursor,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': bearerToken};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiUserGroupList>(Options(
       method: 'GET',

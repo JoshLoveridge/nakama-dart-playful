@@ -32,10 +32,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
   late final Uri apiBaseUrl;
 
-  /// Temporarily holds the current valid session to use in the Chopper
-  /// interceptor for JWT auth.
-  model.Session? _session;
-
   /// Either inits and returns a new instance of [NakamaRestApiClient] or
   /// returns a already initialized one.
   factory NakamaRestApiClient.init({
@@ -74,17 +70,18 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String path,
     required bool ssl,
   }) {
-    apiBaseUrl = Uri(host: host, scheme: ssl ? 'https' : 'http', port: port, path: path);
-    final dio = Dio(BaseOptions(baseUrl: apiBaseUrl.toString()));
-    dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) {
-        if (_session != null) {
-          options.headers.putIfAbsent('Authorization', () => 'Bearer ${_session!.token}');
-        } else {
-          options.headers.putIfAbsent('Authorization', () => 'Basic ${base64Encode('$serverKey:'.codeUnits)}');
-        }
-
-        handler.next(options);
+    apiBaseUrl =
+        Uri(host: host, scheme: ssl ? 'https' : 'http', port: port, path: path);
+    // Auth and refresh endpoints require the server key. Session endpoints
+    // override this immutable default with their own request's Bearer token.
+    // Never read shared session state from an asynchronous interceptor.
+    // Auth and refresh endpoints require the server key. Session endpoints
+    // override this immutable default with their own request's Bearer token.
+    // Never read shared session state from an asynchronous interceptor.
+    final dio = Dio(BaseOptions(
+      baseUrl: apiBaseUrl.toString(),
+      headers: {
+        'Authorization': 'Basic ${base64Encode('$serverKey:'.codeUnits)}'
       },
     ));
     _api = ApiClient(
@@ -127,9 +124,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
   @override
   Future<void> sessionLogout({required model.Session session}) async {
-    _session = session;
     try {
       await _api.sessionLogout(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiSessionLogoutRequest(
           refreshToken: session.refreshToken!,
           token: session.token,
@@ -148,7 +145,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool create = false,
     Map<String, String>? vars,
   }) async {
-    _session = null;
     try {
       final session = await _api.authenticateEmail(
         body: ApiAccountEmail(
@@ -174,6 +170,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkEmail(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountEmail(
           email: email,
           password: password,
@@ -194,6 +191,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkEmail(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountEmail(
           email: email,
           password: password,
@@ -212,8 +210,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
-    _session = null;
-
     try {
       final session = await _api.authenticateDevice(
         body: ApiAccountDevice(id: deviceId, vars: vars),
@@ -234,6 +230,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkDevice(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountDevice(id: deviceId, vars: vars),
       );
     } on Exception catch (e) {
@@ -249,6 +246,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkDevice(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountDevice(id: deviceId, vars: vars),
       );
     } on Exception catch (e) {
@@ -264,8 +262,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     Map<String, String>? vars,
     bool import = false,
   }) async {
-    _session = null;
-
     try {
       final session = await _api.authenticateFacebook(
         body: ApiAccountFacebook(
@@ -291,6 +287,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkFacebook(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountFacebook(
           token: token,
           vars: vars,
@@ -310,6 +307,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkFacebook(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountFacebook(
           token: token,
           vars: vars,
@@ -327,8 +325,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
-    _session = null;
-
     try {
       final session = await _api.authenticateGoogle(
         body: ApiAccountGoogle(
@@ -352,6 +348,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkGoogle(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountGoogle(
           token: token,
           vars: vars,
@@ -370,6 +367,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkGoogle(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountGoogle(
           token: token,
           vars: vars,
@@ -387,8 +385,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
-    _session = null;
-
     try {
       final session = await _api.authenticateApple(
         body: ApiAccountApple(
@@ -412,6 +408,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkApple(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountApple(
           token: token,
           vars: vars,
@@ -430,6 +427,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkApple(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountApple(
           token: token,
           vars: vars,
@@ -447,8 +445,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
-    _session = null;
-
     try {
       final session = await _api.authenticateFacebookInstantGame(
         body: ApiAccountFacebookInstantGame(
@@ -472,6 +468,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkFacebookInstantGame(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountFacebookInstantGame(
           signedPlayerInfo: signedPlayerInfo,
           vars: vars,
@@ -490,6 +487,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkFacebookInstantGame(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountFacebookInstantGame(
           signedPlayerInfo: signedPlayerInfo,
           vars: vars,
@@ -512,8 +510,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
-    _session = null;
-
     try {
       final session = await _api.authenticateGameCenter(
         body: ApiAccountGameCenter(
@@ -547,6 +543,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkGameCenter(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountGameCenter(
           playerId: playerId,
           bundleId: bundleId,
@@ -575,6 +572,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkGameCenter(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountGameCenter(
           playerId: playerId,
           bundleId: bundleId,
@@ -598,8 +596,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     Map<String, String>? vars,
     bool import = false,
   }) async {
-    _session = null;
-
     try {
       final session = await _api.authenticateSteam(
         body: ApiAccountSteam(token: token, vars: vars),
@@ -622,6 +618,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkSteam(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiLinkSteamRequest(
           account: ApiAccountSteam(token: token, vars: vars),
           sync: import,
@@ -641,6 +638,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkSteam(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountSteam(token: token, vars: vars),
       );
     } on Exception catch (e) {
@@ -655,7 +653,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
-    _session = null;
     try {
       final session = await _api.authenticateCustom(
         body: ApiAccountCustom(id: id, vars: vars),
@@ -676,6 +673,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkCustom(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountCustom(id: id, vars: vars),
       );
     } on Exception catch (e) {
@@ -691,6 +689,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkCustom(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountCustom(id: id, vars: vars),
       );
     } on Exception catch (e) {
@@ -705,10 +704,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool reset = false,
     Map<String, String>? vars,
   }) async {
-    _session = session;
-
     try {
       await _api.importFacebookFriends(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountFacebook(
           token: token,
           vars: vars,
@@ -727,10 +725,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool reset = false,
     Map<String, String>? vars,
   }) async {
-    _session = session;
-
     try {
       await _api.importSteamFriends(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiAccountSteam(token: token, vars: vars),
         reset: reset,
       );
@@ -741,10 +738,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
   @override
   Future<model.Account> getAccount(model.Session session) async {
-    _session = session;
-
     try {
-      final account = await _api.getAccount();
+      final account = await _api.getAccount(
+        bearerToken: 'Bearer ${session.token}',
+      );
 
       return model.Account.fromJson(account.toJson());
     } on Exception catch (e) {
@@ -762,10 +759,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? location,
     String? timezone,
   }) async {
-    _session = session;
-
     try {
       await _api.updateAccount(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiUpdateAccountRequest(
           username: username,
           displayName: displayName,
@@ -787,15 +783,18 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required List<String> ids,
     List<String>? usernames,
   }) async {
-    _session = session;
     try {
       final users = await _api.getUsers(
+        bearerToken: 'Bearer ${session.token}',
         ids: ids,
         usernames: usernames ?? [],
         facebookIds: facebookIds ?? [],
       );
 
-      return users.users?.map((e) => model.User.fromJson(e.toJson())).toList(growable: false) ?? [];
+      return users.users
+              ?.map((e) => model.User.fromJson(e.toJson()))
+              .toList(growable: false) ??
+          [];
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -806,10 +805,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required model.Session session,
     required Iterable<model.StorageObjectWrite> objects,
   }) async {
-    _session = session;
-
     try {
       await _api.writeStorageObjects(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiWriteStorageObjectsRequest(
           objects: objects
               .map((e) => ApiWriteStorageObject(
@@ -836,10 +834,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? userId,
     int? limit = defaultLimit,
   }) async {
-    _session = session;
-
     try {
       final objects = await _api.listStorageObjects(
+        bearerToken: 'Bearer ${session.token}',
         collection: collection,
         userId: userId,
         limit: limit,
@@ -857,10 +854,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required model.Session session,
     required Iterable<model.StorageObjectId> objectIds,
   }) async {
-    _session = session;
-
     try {
       final objects = await _api.readStorageObjects(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiReadStorageObjectsRequest(
           objectIds: objectIds
               .map((e) => ApiReadStorageObjectId(
@@ -872,7 +868,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
         ),
       );
 
-      return objects.objects?.map((e) => model.StorageObject.fromJson(e.toJson())).toList(growable: false) ?? [];
+      return objects.objects
+              ?.map((e) => model.StorageObject.fromJson(e.toJson()))
+              .toList(growable: false) ??
+          [];
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -883,10 +882,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required model.Session session,
     required Iterable<model.StorageObjectId> objectIds,
   }) async {
-    _session = session;
-
     try {
       await _api.deleteStorageObjects(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiDeleteStorageObjectsRequest(
           objectIds: objectIds
               .map((e) => ApiDeleteStorageObjectId(
@@ -910,10 +908,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool? forward,
     String? cursor,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listChannelMessages(
+        bearerToken: 'Bearer ${session.token}',
         channelId: channelId,
         limit: limit,
         forward: forward,
@@ -935,15 +932,16 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? cursor,
     DateTime? expiry,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listLeaderboardRecords(
+        bearerToken: 'Bearer ${session.token}',
         leaderboardId: leaderboardName,
         ownerIds: ownerIds ?? [],
         limit: limit,
         cursor: cursor,
-        expiry: expiry == null ? null : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
+        expiry: expiry == null
+            ? null
+            : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
       );
 
       return model.LeaderboardRecordList.fromJson(res.toJson());
@@ -960,14 +958,15 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int limit = defaultLimit,
     DateTime? expiry,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listLeaderboardRecordsAroundOwner(
+        bearerToken: 'Bearer ${session.token}',
         leaderboardId: leaderboardName,
         ownerId: ownerId,
         limit: limit,
-        expiry: expiry == null ? null : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
+        expiry: expiry == null
+            ? null
+            : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
       );
 
       return model.LeaderboardRecordList.fromJson(res.toJson());
@@ -985,10 +984,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? metadata,
     LeaderboardOperator? operator,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.writeLeaderboardRecord(
+          bearerToken: 'Bearer ${session.token}',
           leaderboardId: leaderboardName,
           body: WriteLeaderboardRecordRequestLeaderboardRecordWrite(
             score: score.toString(),
@@ -1008,10 +1006,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required model.Session session,
     required String leaderboardName,
   }) async {
-    _session = session;
-
     try {
-      await _api.deleteLeaderboardRecord(leaderboardId: leaderboardName);
+      await _api.deleteLeaderboardRecord(
+          bearerToken: 'Bearer ${session.token}',
+          leaderboardId: leaderboardName);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -1023,10 +1021,11 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required List<String> ids,
     List<String>? usernames,
   }) async {
-    _session = session;
-
     try {
-      await _api.addFriends(ids: ids, usernames: usernames ?? []);
+      await _api.addFriends(
+          bearerToken: 'Bearer ${session.token}',
+          ids: ids,
+          usernames: usernames ?? []);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -1039,10 +1038,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int limit = defaultLimit,
     String? cursor,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listFriends(
+        bearerToken: 'Bearer ${session.token}',
         cursor: cursor,
         limit: limit,
         state: friendshipState?.index,
@@ -1060,10 +1058,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required List<String> ids,
     List<String>? usernames,
   }) async {
-    _session = session;
-
     try {
       await _api.deleteFriends(
+        bearerToken: 'Bearer ${session.token}',
         ids: ids,
         usernames: usernames ?? [],
       );
@@ -1078,10 +1075,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required List<String> ids,
     List<String>? usernames,
   }) async {
-    _session = session;
-
     try {
       await _api.blockFriends(
+        bearerToken: 'Bearer ${session.token}',
         ids: ids,
         usernames: usernames ?? [],
       );
@@ -1100,10 +1096,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int? maxCount,
     bool? open,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.createGroup(
+        bearerToken: 'Bearer ${session.token}',
         body: ApiCreateGroupRequest(
           name: name,
           avatarUrl: avatarUrl,
@@ -1130,10 +1125,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String? langTag,
     bool? open,
   }) async {
-    _session = session;
-
     try {
       await _api.updateGroup(
+        bearerToken: 'Bearer ${session.token}',
         groupId: groupId,
         body: ApiUpdateGroupRequest(
           groupId: groupId,
@@ -1159,10 +1153,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool? open,
     int limit = defaultLimit,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listGroups(
+        bearerToken: 'Bearer ${session.token}',
         cursor: cursor,
         langTag: langTag,
         limit: limit,
@@ -1182,10 +1175,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required model.Session session,
     required String groupId,
   }) async {
-    _session = session;
-
     try {
-      await _api.deleteGroup(groupId: groupId);
+      await _api.deleteGroup(
+          bearerToken: 'Bearer ${session.token}', groupId: groupId);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -1196,10 +1188,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required model.Session session,
     required String groupId,
   }) async {
-    _session = session;
-
     try {
-      await _api.joinGroup(groupId: groupId);
+      await _api.joinGroup(
+          bearerToken: 'Bearer ${session.token}', groupId: groupId);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -1213,10 +1204,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     GroupMembershipState? state,
     String? userId,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listUserGroups(
+        bearerToken: 'Bearer ${session.token}',
         cursor: cursor,
         limit: limit,
         state: state?.index,
@@ -1237,10 +1227,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int limit = defaultLimit,
     GroupMembershipState? state,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listGroupUsers(
+        bearerToken: 'Bearer ${session.token}',
         groupId: groupId,
         cursor: cursor,
         limit: limit,
@@ -1259,10 +1248,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String groupId,
     required Iterable<String> userIds,
   }) async {
-    _session = session;
-
     try {
       await _api.addGroupUsers(
+        bearerToken: 'Bearer ${session.token}',
         groupId: groupId,
         userIds: userIds.toList(growable: false),
       );
@@ -1277,10 +1265,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String groupId,
     required Iterable<String> userIds,
   }) async {
-    _session = session;
-
     try {
       await _api.promoteGroupUsers(
+        bearerToken: 'Bearer ${session.token}',
         groupId: groupId,
         userIds: userIds.toList(growable: false),
       );
@@ -1295,10 +1282,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String groupId,
     required Iterable<String> userIds,
   }) async {
-    _session = session;
-
     try {
       await _api.demoteGroupUsers(
+        bearerToken: 'Bearer ${session.token}',
         groupId: groupId,
         userIds: userIds.toList(growable: false),
       );
@@ -1313,10 +1299,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String groupId,
     required Iterable<String> userIds,
   }) async {
-    _session = session;
-
     try {
       await _api.kickGroupUsers(
+        bearerToken: 'Bearer ${session.token}',
         groupId: groupId,
         userIds: userIds.toList(growable: false),
       );
@@ -1331,10 +1316,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String groupId,
     required Iterable<String> userIds,
   }) async {
-    _session = session;
-
     try {
       await _api.banGroupUsers(
+        bearerToken: 'Bearer ${session.token}',
         groupId: groupId,
         userIds: userIds.toList(growable: false),
       );
@@ -1348,10 +1332,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required model.Session session,
     required String groupId,
   }) async {
-    _session = session;
-
     try {
-      await _api.leaveGroup(groupId: groupId);
+      await _api.leaveGroup(
+          bearerToken: 'Bearer ${session.token}', groupId: groupId);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -1363,10 +1346,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int limit = defaultLimit,
     String? cursor,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listNotifications(
+        bearerToken: 'Bearer ${session.token}',
         limit: limit,
         cacheableCursor: cursor,
       );
@@ -1382,10 +1364,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required model.Session session,
     required Iterable<String> notificationIds,
   }) async {
-    _session = session;
-
     try {
       await _api.deleteNotifications(
+        bearerToken: 'Bearer ${session.token}',
         ids: notificationIds.toList(growable: false),
       );
     } on Exception catch (e) {
@@ -1403,10 +1384,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int? minSize,
     String? query,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listMatches(
+        bearerToken: 'Bearer ${session.token}',
         authoritative: authoritative,
         label: label,
         limit: limit,
@@ -1415,7 +1395,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
         query: query,
       );
 
-      return res.matches?.map((e) => model.Match.fromJson(e.toJson())).toList(growable: false) ?? [];
+      return res.matches
+              ?.map((e) => model.Match.fromJson(e.toJson()))
+              .toList(growable: false) ??
+          [];
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -1426,10 +1409,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required model.Session session,
     required String tournamentId,
   }) async {
-    _session = session;
-
     try {
-      await _api.joinTournament(tournamentId: tournamentId);
+      await _api.joinTournament(
+          bearerToken: 'Bearer ${session.token}', tournamentId: tournamentId);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -1445,15 +1427,16 @@ class NakamaRestApiClient extends NakamaBaseClient {
     DateTime? endTime,
     int limit = defaultLimit,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listTournaments(
+        bearerToken: 'Bearer ${session.token}',
         categoryStart: categoryStart,
         categoryEnd: categoryEnd,
         cursor: cursor,
-        startTime: startTime != null ? startTime.millisecondsSinceEpoch ~/ 1000 : null,
-        endTime: endTime != null ? endTime.millisecondsSinceEpoch ~/ 1000 : null,
+        startTime:
+            startTime != null ? startTime.millisecondsSinceEpoch ~/ 1000 : null,
+        endTime:
+            endTime != null ? endTime.millisecondsSinceEpoch ~/ 1000 : null,
         limit: limit,
       );
 
@@ -1472,10 +1455,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int limit = defaultLimit,
     String? cursor,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listTournamentRecords(
+        bearerToken: 'Bearer ${session.token}',
         ownerIds: ownerIds.toList(growable: false),
         tournamentId: tournamentId,
         cursor: cursor,
@@ -1497,10 +1479,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int? expiry,
     int limit = defaultLimit,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listTournamentRecordsAroundOwner(
+        bearerToken: 'Bearer ${session.token}',
         ownerId: ownerId,
         tournamentId: tournamentId,
         expiry: expiry?.toString(),
@@ -1522,10 +1503,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int? score,
     int? subscore,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.writeTournamentRecord(
+        bearerToken: 'Bearer ${session.token}',
         tournamentId: tournamentId,
         body: WriteTournamentRecordRequestTournamentRecordWrite(
           metadata: metadata,
@@ -1547,15 +1527,17 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String id,
     String? payload,
   }) async {
-    _session = session;
-
     try {
       ApiRpc res;
 
       if (payload == null) {
-        res = await _api.rpcFunc2(id: id);
+        res =
+            await _api.rpcFunc2(bearerToken: 'Bearer ${session.token}', id: id);
       } else {
-        res = await _api.rpcFunc(id: id, body: preparePayload(payload));
+        res = await _api.rpcFunc(
+            bearerToken: 'Bearer ${session.token}',
+            id: id,
+            body: preparePayload(payload));
       }
 
       return res.payload;
